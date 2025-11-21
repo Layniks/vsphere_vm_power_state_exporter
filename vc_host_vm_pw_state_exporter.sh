@@ -71,6 +71,9 @@ do
 		echo "vsphere_host_conn_state $connStateNumeric" | curl -sX PUT --data-binary @- "http://$prom_pg_host/metrics/job/telegraf_vcenter/instance/$instance/esxhostname/$esxname/state/connection"
 		echo "vsphere_host_power_state $pwStateNumeric" | curl -sX PUT --data-binary @- "http://$prom_pg_host/metrics/job/telegraf_vcenter/instance/$instance/esxhostname/$esxname/state/power"
     done
-
+	
+	(( $sleep_time == 0 )) && {
+	    exit 0
+	}
     sleep $sleep_time
 done
